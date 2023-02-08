@@ -1,5 +1,5 @@
-from graph import graph
-
+from graph import Graph
+import random
 def generate_random_graph(n):
     g = Graph()
     nodes = [chr(i + ord("A")) for i in range(n)]
