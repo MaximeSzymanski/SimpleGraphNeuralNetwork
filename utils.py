@@ -13,5 +13,5 @@ def generate_random_graph(n):
                 continue
             if random.random() < 0.5:
                 g.add_edge(node1, node2)
- 
+    g.generate_node_degrees()
     return g

@@ -36,11 +36,13 @@ class Graph:
         
         Adds node2 to the list of neighbors for node1 and vice versa.
         """
-        if node1 is not node2:
+        node1_neighbords = self.graph[node1]["neighbors"]
+        node2_neighbords = self.graph[node2]["neighbors"]
+        if node1 is not node2 and node1  not in node2_neighbords and node2  not in node1_neighbords :
             self.graph[node1]["neighbors"].append(node2)
             self.graph[node2]["neighbors"].append(node1)
-        else:
-            self.graph[node2]["neighbors"].append(node1)
+        """else:
+            self.graph[node2]["neighbors"].append(node1)"""
 
  
     def get_graph(self):
@@ -84,5 +86,8 @@ class Graph:
                 G.add_edge(node, neighbor)
         pos = nx.spring_layout(G)
         node_colors = ['red', 'blue', 'green', 'yellow', 'purple']
-        nx.draw(G, pos, with_labels=True,  cmap=plt.cm.viridis, node_color=node_colors)
+        node_labels = {node : (self.graph[node]["features"]) for node in self.graph}
+        nx.draw(G, pos, with_labels=False,  cmap=plt.cm.viridis, node_color=node_colors)
+        nx.draw_networkx_labels(G, pos=pos, labels=node_labels)
+
         plt.show()
